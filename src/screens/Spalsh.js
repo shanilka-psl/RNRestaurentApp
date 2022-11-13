@@ -2,22 +2,19 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, StatusBar, Image} from 'react-native';
 import CommonStyles from '../common/CommonStyles';
 import {Route} from '../common/Enums';
+import Assets from '../assets/index';
 
 const Splash = ({navigation}) => {
   //splash screen will be shown for 2 seconds
   React.useEffect(() => {
     setTimeout(() => {
-      navigation.navigate(Route.WELCOME);
+      navigation.navigate(Route.TAB_HOME);
     }, 2000);
   }, [navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={require('../assets/logo.png')}
-        resizeMode={'center'}
-      />
+      <Image style={styles.logo} source={Assets.logo} resizeMode={'center'} />
     </SafeAreaView>
   );
 };

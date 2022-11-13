@@ -1,4 +1,4 @@
 export default {
-  logo: require('./logo.png'),
-  background: require('./bg.png'),
+  logo: require('./Images/logo.png'),
+  background: require('./Images/bg.png'),
 };

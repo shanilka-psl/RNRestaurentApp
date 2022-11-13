@@ -9,5 +9,13 @@ export default {
     // base colors
     primary: '#FE724C', // orange
     secondary: '#25282B', // black
+    white: '#FFFFFF',
+    grey: '#D3D1D8',
+  },
+
+  fontFamily: {
+    bold: 'Rubik-Bold',
+    medium: 'Rubik-Medium',
+    light: 'Rubik-Light',
   },
 };

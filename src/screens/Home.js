@@ -13,18 +13,18 @@ import {ActionButton} from '../components/ActionButton';
 import {FBLogo} from '../assets/Icons/FBLogo';
 import {Route} from '../common/Enums';
 
-const Welcome = ({navigation}) => {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
+      {/* <ImageBackground
         source={Assets.background}
         resizeMode="cover"
         style={styles.image}
-      />
+      /> */}
       {/* <FBLogo /> */}
 
       <ActionButton
-        title={'Welcome'}
+        title={'Home'}
         onPressBtn={() => navigation.navigate(Route.SPLASH)}
         customStyle={styles.btnStyle}
         customTextStyle={styles.btnText}
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Welcome;
+export default Home;
