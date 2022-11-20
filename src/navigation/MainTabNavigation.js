@@ -1,10 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
 import {IconHome} from '../assets/Icons/IconHome';
 import {IconFavorites} from '../assets/Icons/IconFavorites';
 import CommonStyles from '../common/CommonStyles';
 import Favorites from '../screens/Favorites';
+import {Route} from '../common/Enums';
+import Home from '../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,9 +16,10 @@ function MainTabNavigation() {
         tabBarShowLabel: false,
       }}>
       <Tab.Screen
-        name="Home"
+        name={'Home'}
         component={Home}
         options={{
+          tabBarBadge: 3,
           tabBarIcon: ({focused}) => {
             return focused ? (
               <IconHome fill={CommonStyles.colors.primary} />
@@ -29,7 +31,7 @@ function MainTabNavigation() {
       />
 
       <Tab.Screen
-        name="Favorites"
+        name={Route.FAVORITES}
         component={Favorites}
         options={{
           tabBarLabel: 'Welcome',

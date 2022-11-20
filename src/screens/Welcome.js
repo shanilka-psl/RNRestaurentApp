@@ -13,8 +13,7 @@ import Assets from '../assets/index';
 import {ActionButton} from '../components/ActionButton';
 import {Route} from '../common/Enums';
 import LinearGradient from 'react-native-linear-gradient';
-import {FBLogo} from '../assets/Icons/FBLogo';
-import {GoogleLogo} from '../assets/Icons/GoogleLogo';
+import {LoginButtonGroup} from '../components/LoginButtonGroup';
 
 const Welcome = ({navigation}) => {
   const subTitleText = ' Your favourite foods delivered\n fast at your door';
@@ -52,27 +51,11 @@ const Welcome = ({navigation}) => {
               <View style={styles.devider} />
             </View>
 
-            <View style={styles.btnContainer}>
-              <ActionButton
-                title={'FACEBOOK'}
-                onPressBtn={() => navigation.navigate(Route.TAB_HOME)}
-                customStyle={styles.btnStyle}
-                customTextStyle={styles.btnText}
-                icon={<FBLogo />}
-              />
-
-              <ActionButton
-                title={'GOOGLE'}
-                onPressBtn={() => navigation.navigate(Route.TAB_HOME)}
-                customStyle={styles.btnStyle}
-                customTextStyle={styles.btnText}
-                icon={<GoogleLogo />}
-              />
-            </View>
+            <LoginButtonGroup />
 
             <ActionButton
               title={'Start with email or phone'}
-              onPressBtn={() => navigation.navigate(Route.TAB_HOME)}
+              onPressBtn={() => navigation.navigate(Route.SIGNUP)}
               customStyle={styles.footerBtnStyle}
               customTextStyle={styles.footerBtnText}
             />

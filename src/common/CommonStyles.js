@@ -14,6 +14,7 @@ export default {
 
     grey1: '#D3D1D8',
     grey2: '#30384F',
+    grey3: '#9796A1',
   },
 
   fontFamily: {
