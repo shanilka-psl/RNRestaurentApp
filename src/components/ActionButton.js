@@ -1,6 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import {FBLogo} from '../assets/Icons/FBLogo';
 import CommonStyles from '../common/CommonStyles';
 
 export const ActionButton = ({
@@ -8,9 +7,11 @@ export const ActionButton = ({
   customStyle,
   customTextStyle,
   onPressBtn,
+  icon,
 }) => {
   return (
     <TouchableOpacity style={customStyle} onPress={onPressBtn}>
+      {icon}
       <Text
         style={[{fontFamily: CommonStyles.fontFamily.medium}, customTextStyle]}>
         {title}

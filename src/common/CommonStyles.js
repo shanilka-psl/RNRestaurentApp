@@ -10,7 +10,10 @@ export default {
     primary: '#FE724C', // orange
     secondary: '#25282B', // black
     white: '#FFFFFF',
-    grey: '#D3D1D8',
+    black: '#111719',
+
+    grey1: '#D3D1D8',
+    grey2: '#30384F',
   },
 
   fontFamily: {

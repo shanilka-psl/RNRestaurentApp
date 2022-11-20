@@ -4,11 +4,11 @@ import CommonStyles from '../common/CommonStyles';
 import {ActionButton} from '../components/ActionButton';
 import {Route} from '../common/Enums';
 
-const Home = ({navigation}) => {
+const Favorites = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ActionButton
-        title={'Home'}
+        title={'Favorites'}
         onPressBtn={() => navigation.navigate(Route.TAB_HOME)}
         customStyle={styles.btnStyle}
         customTextStyle={styles.btnText}
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Favorites;

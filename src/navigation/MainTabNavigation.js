@@ -1,11 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
-import Welcome from '../screens/Welcome';
-
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons';
-import {HomeIcon} from '../assets/Icons/HomeIcon';
+import {IconHome} from '../assets/Icons/IconHome';
+import {IconFavorites} from '../assets/Icons/IconFavorites';
 import CommonStyles from '../common/CommonStyles';
+import Favorites from '../screens/Favorites';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,22 +20,26 @@ function MainTabNavigation() {
         options={{
           tabBarIcon: ({focused}) => {
             return focused ? (
-              <HomeIcon fill={CommonStyles.colors.primary} />
+              <IconHome fill={CommonStyles.colors.primary} />
             ) : (
-              <HomeIcon fill={CommonStyles.colors.grey} />
+              <IconHome fill={CommonStyles.colors.grey} />
             );
           },
         }}
       />
 
       <Tab.Screen
-        name="Welcome"
-        component={Welcome}
+        name="Favorites"
+        component={Favorites}
         options={{
           tabBarLabel: 'Welcome',
-          tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="alarm" color={color} size={size} />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? (
+              <IconFavorites fill={CommonStyles.colors.primary} />
+            ) : (
+              <IconFavorites fill={CommonStyles.colors.grey} />
+            );
+          },
         }}
       />
     </Tab.Navigator>

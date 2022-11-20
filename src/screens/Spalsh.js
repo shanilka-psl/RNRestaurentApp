@@ -8,7 +8,7 @@ const Splash = ({navigation}) => {
   //splash screen will be shown for 2 seconds
   React.useEffect(() => {
     setTimeout(() => {
-      navigation.navigate(Route.TAB_HOME);
+      navigation.navigate(Route.WELCOME);
     }, 2000);
   }, [navigation]);
 
