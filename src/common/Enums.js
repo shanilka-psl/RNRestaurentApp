@@ -3,6 +3,7 @@ export const Route = {
   SPLASH: 'Splash',
   WELCOME: 'Welcome',
   SIGNUP: 'Signup',
+  SIGNIN: 'Signin',
   FAVORITES: 'FAVORITES',
 
   // Main Tab Navigation

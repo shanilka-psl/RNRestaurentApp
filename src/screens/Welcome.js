@@ -64,7 +64,7 @@ const Welcome = ({navigation}) => {
               <Text style={styles.footerText}>Already have an account? </Text>
               <ActionButton
                 title={'Sign In'}
-                onPressBtn={() => navigation.navigate(Route.TAB_HOME)}
+                onPressBtn={() => navigation.navigate(Route.SIGNIN)}
                 customTextStyle={[
                   styles.footerText,
                   {textDecorationLine: 'underline'},

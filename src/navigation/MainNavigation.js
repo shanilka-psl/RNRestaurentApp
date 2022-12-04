@@ -6,8 +6,9 @@ import Splash from '../screens/Spalsh';
 import Signup from '../screens/Signup';
 
 import MainTabNavigation from './MainTabNavigation';
-import DrawerNavigation from './DrawerNavigation';
+// import DrawerNavigation from './DrawerNavigation';
 import Welcome from '../screens/Welcome';
+import Signin from '../screens/SignIn';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,12 @@ const MainNavigation = () => {
         />
 
         <Stack.Screen
+          name={Route.SIGNIN}
+          component={Signin}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
           name={Route.SIGNUP}
           component={Signup}
           options={{headerShown: false}}
@@ -39,11 +46,11 @@ const MainNavigation = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name={Route.DRAWER_HOME}
           component={DrawerNavigation}
           options={{headerShown: false}}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

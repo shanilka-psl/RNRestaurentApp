@@ -3,12 +3,18 @@ import {SafeAreaView, StyleSheet, StatusBar, Image} from 'react-native';
 import CommonStyles from '../common/CommonStyles';
 import {Route} from '../common/Enums';
 import Assets from '../assets/index';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Splash = ({navigation}) => {
   //splash screen will be shown for 2 seconds
   React.useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate(Route.WELCOME);
+    setTimeout(async () => {
+      const value = await AsyncStorage.getItem('USER');
+      if (value !== null) {
+        navigation.replace(Route.TAB_HOME);
+      } else {
+        navigation.replace(Route.WELCOME);
+      }
     }, 2000);
   }, [navigation]);
 

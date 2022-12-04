@@ -10,17 +10,17 @@ import CommonStyles from '../common/CommonStyles';
 
 export const CustomTextInput = ({
   title,
-  props,
   icon,
   onShowPasswordPress,
   secureTextEntry,
+  onChangeText,
 }) => {
   return (
-    <>
+    <View>
       <Text style={styles.titleText}>{title}</Text>
       <View style={styles.inputContainer}>
         <TextInput
-          {...props}
+          onChangeText={onChangeText}
           style={styles.inputStyles}
           secureTextEntry={secureTextEntry}
         />
@@ -28,7 +28,7 @@ export const CustomTextInput = ({
           {icon}
         </TouchableOpacity>
       </View>
-    </>
+    </View>
   );
 };
 

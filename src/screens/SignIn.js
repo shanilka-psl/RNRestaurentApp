@@ -8,7 +8,7 @@ import {LoginButtonGroup} from '../components/LoginButtonGroup';
 import {IconEye} from '../assets/Icons/IconEye';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Signup = ({navigation}) => {
+const Signin = ({navigation}) => {
   const [fullName, setFullName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -18,28 +18,21 @@ const Signup = ({navigation}) => {
     setShowPW(!showPW);
   };
 
-  const storeData = async () => {
+  const getData = async () => {
     try {
-      let userData = {
-        fullName: fullName,
-        email: email,
-        password: password,
-      };
-      const userObject = JSON.stringify(userData);
-      await AsyncStorage.setItem('USER', userObject);
+      const value = JSON.parse(await AsyncStorage.getItem('USER'));
+      if (value?.email === email && value?.password === password) {
+        navigation.navigate(Route.TAB_HOME);
+      } else {
+        console.log('Invalid Credentials');
+      }
     } catch (e) {
-      console.log(e);
+      // error reading value
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <CustomTextInput
-        title={'Full Name'}
-        onChangeText={setFullName}
-        value={fullName}
-      />
-
       <CustomTextInput title={'E-mail'} onChangeText={setEmail} value={email} />
 
       <CustomTextInput
@@ -58,15 +51,8 @@ const Signup = ({navigation}) => {
       />
 
       <ActionButton
-        title={'Store Data'}
-        onPressBtn={() => storeData()}
-        customStyle={styles.btnStyle}
-        customTextStyle={styles.btnText}
-      />
-
-      <ActionButton
-        title={'Get Data'}
-        onPressBtn={() => storeData()}
+        title={'Sign In'}
+        onPressBtn={() => getData()}
         customStyle={styles.btnStyle}
         customTextStyle={styles.btnText}
       />
@@ -105,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Signup;
+export default Signin;

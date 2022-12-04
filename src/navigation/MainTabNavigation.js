@@ -4,7 +4,6 @@ import {IconHome} from '../assets/Icons/IconHome';
 import {IconFavorites} from '../assets/Icons/IconFavorites';
 import CommonStyles from '../common/CommonStyles';
 import Favorites from '../screens/Favorites';
-import {Route} from '../common/Enums';
 import Home from '../screens/Home';
 
 const Tab = createBottomTabNavigator();
@@ -19,27 +18,25 @@ function MainTabNavigation() {
         name={'Home'}
         component={Home}
         options={{
-          tabBarBadge: 3,
           tabBarIcon: ({focused}) => {
             return focused ? (
               <IconHome fill={CommonStyles.colors.primary} />
             ) : (
-              <IconHome fill={CommonStyles.colors.grey} />
+              <IconHome fill={CommonStyles.colors.grey1} />
             );
           },
         }}
       />
 
       <Tab.Screen
-        name={Route.FAVORITES}
+        name={'Favorites'}
         component={Favorites}
         options={{
-          tabBarLabel: 'Welcome',
           tabBarIcon: ({focused}) => {
             return focused ? (
               <IconFavorites fill={CommonStyles.colors.primary} />
             ) : (
-              <IconFavorites fill={CommonStyles.colors.grey} />
+              <IconFavorites fill={CommonStyles.colors.grey1} />
             );
           },
         }}
