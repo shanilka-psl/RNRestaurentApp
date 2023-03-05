@@ -9,23 +9,23 @@ import {
 import CommonStyles from '../common/CommonStyles';
 
 export const CustomTextInput = ({
-  title,
+  customTitle,
   icon,
   onShowPasswordPress,
   secureTextEntry,
-  value,
-  onChangeText,
+  customValue,
+  onChangeCustomText,
   multiline,
   numberOfLines,
   customInputStyle,
 }) => {
   return (
     <View>
-      <Text style={styles.titleText}>{title}</Text>
+      <Text style={styles.titleText}>{customTitle}</Text>
       <View style={styles.inputContainer}>
         <TextInput
-          value={value}
-          onChangeText={onChangeText}
+          value={customValue}
+          onChangeText={onChangeCustomText}
           style={[styles.inputStyles, customInputStyle]}
           secureTextEntry={secureTextEntry}
           multiline={multiline}

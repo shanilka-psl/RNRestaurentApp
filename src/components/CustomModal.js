@@ -7,6 +7,35 @@ const CustomModal = ({data, visible, onSaveNote, onCancelNote}) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  React.useEffect(() => {
+    if (data) {
+      setTitle(data.title);
+      setDescription(data.description);
+    } else {
+      clearFieldData();
+    }
+  }, [data]);
+
+  const clearFieldData = () => {
+    setTitle('');
+    setDescription('');
+  };
+
+  const onCloseModal = () => {
+    clearFieldData();
+    onCancelNote();
+  };
+
+  const onModalSave = () => {
+    clearFieldData();
+
+    if (data) {
+      onSaveNote('UPDATE', title, description);
+    } else {
+      onSaveNote('ADD', title, description);
+    }
+  };
+
   return (
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.centeredView}>
@@ -14,15 +43,15 @@ const CustomModal = ({data, visible, onSaveNote, onCancelNote}) => {
           <Text style={styles.modalText}>Add your Note here!</Text>
 
           <CustomTextInput
-            title={'Title'}
-            value={data ? data.title : title}
-            onChangeText={setTitle}
+            customTitle={'Title'}
+            customValue={title}
+            onChangeCustomText={setTitle}
           />
 
           <CustomTextInput
-            title={'Description'}
-            value={data ? data.description : description}
-            onChangeText={setDescription}
+            customTitle={'Description'}
+            customValue={description}
+            onChangeCustomText={setDescription}
             multiline
             numberOfLines={5}
             customInputStyle={styles.customInput}
@@ -32,13 +61,13 @@ const CustomModal = ({data, visible, onSaveNote, onCancelNote}) => {
           <View style={styles.btnContainer}>
             <TouchableOpacity
               style={[styles.button, styles.buttonSave]}
-              onPress={() => onSaveNote(title, description)}>
+              onPress={onModalSave}>
               <Text style={styles.textStyle}>Save Note</Text>
             </TouchableOpacity>
             <View style={styles.gap} />
             <TouchableOpacity
               style={[styles.button, styles.buttonClose]}
-              onPress={onCancelNote}>
+              onPress={onCloseModal}>
               <Text style={styles.textStyle}>Cancel</Text>
             </TouchableOpacity>
           </View>

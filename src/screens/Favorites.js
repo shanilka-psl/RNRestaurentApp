@@ -5,28 +5,36 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  View,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import CommonStyles from '../common/CommonStyles';
 import CustomModal from '../components/CustomModal';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {addNote, removeNote, updateNote} from '../redux/noteSlice';
+
 const Favorites = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [noteData, setNoteData] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
+
+  const noteData = useSelector(state => state.notes.noteData);
+  const dispatch = useDispatch();
+
+  const [selectedIndex, setSelectedItem] = useState(0);
 
   const renderFabButton = () => {
     return (
       <TouchableOpacity
         style={styles.fabButton}
-        onPress={() => openNoteModal({})}>
-        <Icon name="add" size={50} />
+        onPress={() => openNoteModal(null)}>
+        <Icon name="add" size={30} />
       </TouchableOpacity>
     );
   };
 
-  const onSaveData = (title, description) => {
+  const onSaveData = (type, title, description) => {
     setModalVisible(!modalVisible);
 
     const noteObject = {
@@ -34,23 +42,45 @@ const Favorites = () => {
       description,
     };
 
-    setNoteData(noteData => [noteObject, ...noteData]);
+    if (type === 'ADD') {
+      dispatch(addNote(noteObject));
+    } else {
+      const payload = {
+        index: selectedIndex,
+        noteObject,
+      };
+      dispatch(updateNote(payload));
+    }
   };
 
-  const NoteListItem = ({item}) => {
+  const NoteListItem = ({index, item}) => {
     return (
-      <TouchableOpacity
-        style={styles.noteContainer}
-        onPress={() => openNoteModal(item)}>
-        <Text>{item.title}</Text>
-        <Text>{item.description}</Text>
-      </TouchableOpacity>
+      <View style={styles.noteContainer}>
+        <View>
+          <Text>{item.title}</Text>
+          <Text>{item.description}</Text>
+        </View>
+
+        <View style={styles.row}>
+          <TouchableOpacity
+            onPress={() => openNoteModal(item, index)}
+            style={styles.btn}>
+            <Icon name="ios-folder-outline" size={20} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => dispatch(removeNote(index))}>
+            <Icon name="ios-remove-circle-sharp" size={20} />
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   };
 
-  const openNoteModal = item => {
+  const openNoteModal = (item, index) => {
     setModalVisible(!modalVisible);
     setSelectedNote(item);
+    setSelectedItem(index);
   };
 
   return (
@@ -63,10 +93,7 @@ const Favorites = () => {
         onCancelNote={() => setModalVisible(!modalVisible)}
       />
 
-      <FlatList
-        data={noteData}
-        renderItem={({item}) => <NoteListItem item={item} />}
-      />
+      <FlatList data={noteData} renderItem={NoteListItem} />
 
       {renderFabButton()}
     </SafeAreaView>
@@ -92,14 +119,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    bottom: 50,
-    right: 50,
+    bottom: 25,
+    right: 10,
     padding: 10,
   },
 
   noteContainer: {
     backgroundColor: 'white',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
     padding: 20,
+    margin: 10,
     borderRadius: 8,
     shadowColor: '#000',
     shadowOffset: {
@@ -109,6 +140,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  row: {flexDirection: 'row'},
+
+  btn: {
+    padding: 5,
   },
 });
 
