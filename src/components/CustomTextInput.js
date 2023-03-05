@@ -13,16 +13,23 @@ export const CustomTextInput = ({
   icon,
   onShowPasswordPress,
   secureTextEntry,
+  value,
   onChangeText,
+  multiline,
+  numberOfLines,
+  customInputStyle,
 }) => {
   return (
     <View>
       <Text style={styles.titleText}>{title}</Text>
       <View style={styles.inputContainer}>
         <TextInput
+          value={value}
           onChangeText={onChangeText}
-          style={styles.inputStyles}
+          style={[styles.inputStyles, customInputStyle]}
           secureTextEntry={secureTextEntry}
+          multiline={multiline}
+          numberOfLines={numberOfLines}
         />
         <TouchableOpacity onPress={onShowPasswordPress} style={styles.icon}>
           {icon}
@@ -34,8 +41,8 @@ export const CustomTextInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    borderWidth: 1,
-    borderColor: 'red',
+    borderWidth: 0.5,
+    borderColor: '#2196F3',
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -47,11 +54,18 @@ const styles = StyleSheet.create({
     color: CommonStyles.colors.grey3,
     marginVertical: 12,
   },
+  // inputStyles: {
+  //   height: 65,
+  //   width: CommonStyles.width * 0.8,
+  //   padding: 20,
+  //   borderRadius: 10,
+  // },
+
   inputStyles: {
-    height: 65,
-    width: CommonStyles.width * 0.8,
-    padding: 20,
-    borderRadius: 10,
+    height: 50,
+    width: CommonStyles.width * 0.65,
+    padding: 10,
+    borderRadius: 8,
   },
 
   icon: {position: 'absolute', right: 20},

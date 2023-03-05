@@ -9,6 +9,7 @@ import MainTabNavigation from './MainTabNavigation';
 // import DrawerNavigation from './DrawerNavigation';
 import Welcome from '../screens/Welcome';
 import Signin from '../screens/SignIn';
+import Favorites from '../screens/Favorites';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,12 @@ const MainNavigation = () => {
         <Stack.Screen
           name={Route.TAB_HOME}
           component={MainTabNavigation}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name={Route.FAVORITES}
+          component={Favorites}
           options={{headerShown: false}}
         />
 
